@@ -27,3 +27,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# ignore the fact that my Ruby version is on 3.0.0 instead of 3.0.1
+/Gemfile
+/.ruby-version
