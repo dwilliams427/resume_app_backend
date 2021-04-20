@@ -29,6 +29,5 @@ Rails.application.routes.draw do
     post "/education", controller: "education", action: "create"
     patch "/education/:id", controller: "education", action: "update"
     delete "/education/:id", controller: "education", action: "destroy"
-
   end
 end
