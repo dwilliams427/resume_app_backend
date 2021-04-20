@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception, if: -> { request.format.html? }
 
-  def current_user
+  def current_student
     auth_headers = request.headers["Authorization"]
     if auth_headers.present? && auth_headers[/(?<=\A(Bearer ))\S+\z/]
       token = auth_headers[/(?<=\A(Bearer ))\S+\z/]
@@ -12,24 +12,24 @@ class ApplicationController < ActionController::Base
           true,
           { algorithm: "HS256" }
         )
-        User.find_by(id: decoded_token[0]["user_id"])
+        Student.find_by(id: decoded_token[0]["student_id"])
       rescue JWT::ExpiredSignature
         nil
       end
     end
   end
 
-  helper_method :current_user
+  helper_method :current_student
 
-  def authenticate_user
-    unless current_user
+  def authenticate_student
+    unless current_student
       render json: { message: "ERROR: unauthorized. Need to be signed in" }, status: :unauthorized
     end
   end
 
   #authenticate admin
   def authenticate_admin
-    unless current_user && current_user.admin
+    unless current_student && current_student.admin
       render json: { message: "ERROR: unauthorized. Need to be signed in" }, status: :unauthorized
     end
   end
