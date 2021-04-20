@@ -15,7 +15,7 @@ class Api::CapstonesController < ApplicationController
       description: params[:description],
       url: params[:url],
       screenshot: params[:screenshot],
-      student_id: params[:student_id],
+      student_id: current_student.id,
     )
 
     # happy/sad path
@@ -33,7 +33,6 @@ class Api::CapstonesController < ApplicationController
     @capstone.description = params[:description] || @capstone.description
     @capstone.url = params[:url] || @capstone.url
     @capstone.screenshot = params[:screenshot] || @capstone.screenshot
-    @capstone.student_id = params[:student_id] || @capstone.student_id
 
     if @capstone.save
       render "show.json.jb" 
