@@ -1,6 +1,6 @@
 class Api::ExperiencesController < ApplicationController
   # add and test before_action once auth is implemented.
-  # before_action :authenticate_user, except: [:index, :show]
+  # before_action :authenticate_student, except: [:index, :show]
 
   def index
     @experiences = Experience.all
