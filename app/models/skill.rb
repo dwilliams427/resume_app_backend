@@ -1,2 +1,3 @@
-class Skill < ApplicationRecord
+class Skill < 
+  # belongs_to :student
 end
