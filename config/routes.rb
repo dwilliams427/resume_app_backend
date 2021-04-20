@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   # EXAMPLE JSON ROUTE WITH API NAMESPACE
   namespace :api do
+
     #EDUCATION ROUTES
     get "/education", controller: "education", action: "index"
     get "/education/:id", controller: "education", action: "show"

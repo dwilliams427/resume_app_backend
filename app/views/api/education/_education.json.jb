@@ -1,7 +1,9 @@
 {
-  id: actor.id,
-  first_name: actor.first_name,
-  last_name: actor.last_name,
-  known_for: actor.known_for,
-  movie_plot: actor.movie.plot,
+  id: education.id,
+  start_date: education.start_date,
+  end_date: education.end_date,
+  degree: education.degree,
+  university: education.university,
+  details: education.details,
+# student_id: student.id,
 }

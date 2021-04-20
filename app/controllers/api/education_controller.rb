@@ -1,58 +1,57 @@
 class Api::EducationController < ApplicationController
-  before_action :authenticate_admin, except: [:index, :show]
+  # before_action :authenticate_admin, except: [:index, :show]
 
   def index
-    @actor = Actor.all.order(age: :asc)
+    @education = Education.all
     render "index.json.jb"
   end
 
-  def show_actor
-    actor_id = params[:id]
-    @actor = Actor.find(actor_id)
-    render "show_actor.json.jb"
+  def show
+    education_id = params[:id]
+    @education = Education.find(education_id)
+    render "show.json.jb"
   end
 
   def create
-    @actor = Actor.new(
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      known_for: params[:known_for],
-      gender: params[:gender],
-      age: params[:age],
-      movie_id: params[:movie_id],
+    @education = Education.new(
+      start_date: params[:start_date],
+      end_date: params[:end_date],
+      degree: params[:degree],
+      university: params[:university],
+      details: params[:details],
+      # student_id: current_user.id,
     )
     #happy/sad path
-    if @actor.save
-      render "show_actor.json.jb"             #happy path
+    if @education.save
+      render "show.json.jb"             #happy path
     else
-      render json: { errors: @actor.errors.full_messages }, status: 406                       #sad path
+      render json: { errors: @education.errors.full_messages }, status: 406                       #sad path
     end
   end
 
   def update
-    actor_id = params[:id]
-    @actor = Actor.find_by(id: actor_id)
+    education_id = params[:id]
+    @education = Education.find_by(id: education_id)
 
-    @actor.first_name = params[:first_name] || @actor.first_name
-    @actor.last_name = params[:last_name] || @actor.last_name
-    @actor.known_for = params[:known_for] || @actor.known_for
-    @actor.gender = params[:gender] || @actor.gender
-    @actor.movie_id = params[:movie_id] || @actor.movie_id
-    @actor.age = params[:age] || @actor.age
+    @education.start_date = params[:start_date] || @education.start_date
+    @education.end_date = params[:end_date] || @education.end_date
+    @education.degree = params[:degree] || @education.degree
+    @education.university = params[:university] || @education.university
+    @education.details = params[:details] || @education.details
 
     #happy/sad path
-    if @actor.save
-      render "show_actor.json.jb"             #happy path
+    if @education.save
+      render "show.json.jb"             #happy path
     else
-      render json: { errors: @actor.errors.full_messages }, status: 406                       #sad path
+      render json: { errors: @education.errors.full_messages }, status: 406                       #sad path
     end
   end
 
   def destroy
-    actor_id = params[:id]
-    @actor = Actor.find_by(id: actor_id)
+    education_id = params[:id]
+    @education = Education.find_by(id: education_id)
 
-    @actor.destroy
-    render json: { message: "deleted actor" }
+    @education.destroy
+    render json: { message: "deleted education" }
   end
 end
