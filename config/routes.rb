@@ -9,5 +9,12 @@ Rails.application.routes.draw do
     post "/capstones" => "capstones#create"
     patch "/capstones/:id" => "capstones#update"
     delete "/capstones/:id" => "capstones#destroy"
+
+    get "/education", controller: "education", action: "index"
+    get "/education/:id", controller: "education", action: "show"
+    post "/education", controller: "education", action: "create"
+    patch "/education/:id", controller: "education", action: "update"
+    delete "/education/:id", controller: "education", action: "destroy"
+
   end
 end
