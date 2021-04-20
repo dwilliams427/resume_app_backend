@@ -36,7 +36,6 @@ class Api::ExperiencesController < ApplicationController
     @experience.job_title = params[:job_title] || @experience.job_title
     @experience.company_name = params[:company_name] || @experience.company_name
     @experience.details = params[:details] || @experience.details
-    @experience.student_id = params[:student_id] || @experience.student_id
 
     if @experience.save
       render "show.json.jb"
