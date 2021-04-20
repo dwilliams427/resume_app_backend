@@ -4,6 +4,17 @@ Rails.application.routes.draw do
 
   # EXAMPLE JSON ROUTE WITH API NAMESPACE
   namespace :api do
+    get "/capstones" => "capstones#index"
+    get "/capstones/:id" => "capstones#show"
+    post "/capstones" => "capstones#create"
+    patch "/capstones/:id" => "capstones#update"
+    delete "/capstones/:id" => "capstones#destroy"
+    # student-model
+    get "/students" => "students#index"
+    get "/students/:id" => "students#show"
+    put "/students" => "students#create"
+    patch "/students/:id" => "students#update"
+    delete "/students/:id" => "students#destroy"
 
     #SKILLS ROUTES
     get "skills" => "skills#index"
@@ -19,9 +30,10 @@ Rails.application.routes.draw do
     delete "/experiences/:id" => "experiences#destroy"
     #EDUCATION ROUTES
     get "/education", controller: "education", action: "index"
-    get "/education/:id", controller: "education", action: "show"
+    get "/education/:id", controller: "educatio   n", action: "show"
     post "/education", controller: "education", action: "create"
     patch "/education/:id", controller: "education", action: "update"
     delete "/education/:id", controller: "education", action: "destroy"
+
   end
 end
