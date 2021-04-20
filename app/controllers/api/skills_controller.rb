@@ -13,7 +13,7 @@ class Api::SkillsController < ApplicationController
   def create
     @skill = Skill.new(
       skill_name: params[:skill_name],
-      # student_id: current_user.id,
+      student_id: current_student.id,
     )
     if @skill.save
       render "show.json.jb"

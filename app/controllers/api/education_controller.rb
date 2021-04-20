@@ -19,7 +19,7 @@ class Api::EducationController < ApplicationController
       degree: params[:degree],
       university: params[:university],
       details: params[:details],
-      # student_id: current_user.id,
+      student_id: current_student.id,
     )
     #happy/sad path
     if @education.save
