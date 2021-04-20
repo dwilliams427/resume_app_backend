@@ -14,11 +14,11 @@ class Api::ExperiencesController < ApplicationController
 
   def create
     @experience = Experience.new(
-      :start_date = params[:start_date],
-      :end_date = params[:end_date],
-      :job_title = params[:job_title],
-      :company_name = params[:company_name],
-      :details = params[:details],
+      :start_date => params[:start_date],
+      :end_date => params[:end_date],
+      :job_title => params[:job_title],
+      :company_name => params[:company_name],
+      :details => params[:details],
       # :student_id = current_user.id,
     )
     if @experience.save
@@ -49,5 +49,4 @@ class Api::ExperiencesController < ApplicationController
     @experience.destroy
     render :json => { :message => "Experience was destroyed." }
   end
-
 end

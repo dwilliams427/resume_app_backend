@@ -30,10 +30,9 @@ Rails.application.routes.draw do
     delete "/experiences/:id" => "experiences#destroy"
     #EDUCATION ROUTES
     get "/education", controller: "education", action: "index"
-    get "/education/:id", controller: "educatio   n", action: "show"
+    get "/education/:id", controller: "education", action: "show"
     post "/education", controller: "education", action: "create"
     patch "/education/:id", controller: "education", action: "update"
     delete "/education/:id", controller: "education", action: "destroy"
-
   end
 end
