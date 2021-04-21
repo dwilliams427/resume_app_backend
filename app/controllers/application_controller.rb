@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception, if: -> { request.format.html? }
 
-  def current_student
+  def current_user
     auth_headers = request.headers["Authorization"]
     if auth_headers.present? && auth_headers[/(?<=\A(Bearer ))\S+\z/]
       token = auth_headers[/(?<=\A(Bearer ))\S+\z/]
@@ -19,17 +19,17 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  helper_method :current_student
+  helper_method :current_user
 
-  def authenticate_student
-    unless current_student
+  def authenticate_user
+    unless current_user
       render json: { message: "ERROR: unauthorized. Need to be signed in" }, status: :unauthorized
     end
   end
 
   #authenticate admin
   def authenticate_admin
-    unless current_student && current_student.admin
+    unless current_user && current_user.admin
       render json: { message: "ERROR: unauthorized. Need to be signed in" }, status: :unauthorized
     end
   end
