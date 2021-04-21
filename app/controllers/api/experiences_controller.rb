@@ -1,6 +1,6 @@
 class Api::ExperiencesController < ApplicationController
   # add and test before_action once auth is implemented.
-  before_action :authenticate_user, except: [:index, :show]
+  before_action :authenticate_student, except: [:index, :show]
 
   def index
     @experiences = Experience.all
@@ -19,7 +19,7 @@ class Api::ExperiencesController < ApplicationController
       :job_title => params[:job_title],
       :company_name => params[:company_name],
       :details => params[:details],
-      :student_id = current_user.id,
+      :student_id => current_student.id,
     )
     if @experience.save
       render "show.json.jb"
