@@ -1,3 +1,20 @@
 @students.map do |student|
-  render partial: "student.json.jb", locals: { student: student }
+  s = render partial: "student.json.jb", locals: { student: student }
+
+  s[:experiences] = student.experiences.map do |experience|
+    render partial: "/api/experiences/experience", locals: { experience: experience }
+  end
+
+  s[:skills] = student.skills.map do |skill|
+    render partial: "/api/skills/skill", locals: { skill: skill }
+  end
+
+  s[:educations] = student.educations.map do |education|
+    render partial: "/api/educations/education", locals: { education: education }
+  end
+
+  s[:capstones] = student.capstones.map do |capstone|
+    render partial: "/api/capstones/capstone", locals: { capstone: capstone }
+  end
+  s
 end
