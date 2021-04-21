@@ -1,5 +1,5 @@
 class Api::CapstonesController < ApplicationController
-  before_action :authenticate_user, except: [:index, :show]
+  before_action :authenticate_student, except: [:index, :show]
 
   def index
     @capstones = Capstone.all
@@ -17,7 +17,7 @@ class Api::CapstonesController < ApplicationController
       description: params[:description],
       url: params[:url],
       screenshot: params[:screenshot],
-      student_id: current_user.id,
+      student_id: current_student.id,
     )
 
     # happy/sad path
