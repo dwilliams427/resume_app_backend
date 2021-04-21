@@ -1,5 +1,5 @@
 class Api::SkillsController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_student, except: [:index, :show]
 
   def index
     @skills = Skill.all
@@ -15,7 +15,7 @@ class Api::SkillsController < ApplicationController
   def create
     @skill = Skill.new(
       skill_name: params[:skill_name],
-      student_id: current_user.id,
+      student_id: current_student.id,
     )
     if @skill.save
       render "show.json.jb"

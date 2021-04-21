@@ -1,4 +1,6 @@
 class Api::CapstonesController < ApplicationController
+  before_action :authenticate_student, except: [:index, :show]
+
   def index
     @capstones = Capstone.all
     render "index.json.jb"
@@ -15,17 +17,17 @@ class Api::CapstonesController < ApplicationController
       description: params[:description],
       url: params[:url],
       screenshot: params[:screenshot],
-      student_id: current_user.id,
+      student_id: current_student.id,
     )
 
     # happy/sad path
     if @capstone.save
-      render "show.json.jb" 
+      render "show.json.jb"
     else
       render json: { errors: @capstone.errors.full_messages }, status: 406
     end
   end
-  
+
   def update
     @capstone = Capstone.find(params[:id])
 
@@ -35,7 +37,7 @@ class Api::CapstonesController < ApplicationController
     @capstone.screenshot = params[:screenshot] || @capstone.screenshot
 
     if @capstone.save
-      render "show.json.jb" 
+      render "show.json.jb"
     else
       render json: { errors: @capstone.errors.full_messages }, status: 406
     end
@@ -46,6 +48,6 @@ class Api::CapstonesController < ApplicationController
     @capstone = Capstone.find(params[:id])
 
     @capstone.destroy
-    render json: {message: "capstone successfully destroyed"}
+    render json: { message: "capstone successfully destroyed" }
   end
 end

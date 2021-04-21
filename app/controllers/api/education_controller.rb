@@ -1,5 +1,5 @@
 class Api::EducationController < ApplicationController
-  # before_action :authenticate_admin, except: [:index, :show]
+  before_action :authenticate_student, except: [:index, :show]
 
   def index
     @education = Education.all
@@ -19,7 +19,7 @@ class Api::EducationController < ApplicationController
       degree: params[:degree],
       university: params[:university],
       details: params[:details],
-      student_id: current_user.id,
+      student_id: current_student.id,
     )
     #happy/sad path
     if @education.save
