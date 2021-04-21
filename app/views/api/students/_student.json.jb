@@ -10,8 +10,8 @@
   website_url: student.website_url,
   github_url: student.github_url,
   profile_photo: student.photo,
-  experiences: student.experiences,
-  education: student.educations,
-  skills: student.skills,
-  capstone: student.capstones,
+  # experiences: student.experiences,
+  # education: student.educations,
+  # skills: student.skills,
+  # capstone: student.capstones,
 }
