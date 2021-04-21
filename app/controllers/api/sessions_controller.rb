@@ -1,4 +1,5 @@
 class Api::SessionsController < ApplicationController
+  
   def create
     student = Student.find_by(email: params[:email])
     if student && student.authenticate(params[:password])
