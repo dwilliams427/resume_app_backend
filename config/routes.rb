@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     # student-model
     get "/students" => "students#index"
     get "/students/:id" => "students#show"
-    put "/students" => "students#create"
+    post "/students" => "students#create"
     patch "/students/:id" => "students#update"
     delete "/students/:id" => "students#destroy"
 
@@ -34,5 +34,8 @@ Rails.application.routes.draw do
     post "/education", controller: "education", action: "create"
     patch "/education/:id", controller: "education", action: "update"
     delete "/education/:id", controller: "education", action: "destroy"
+
+    #sessions routes
+    post "/sessions", controller: "sessions", action: "create"
   end
 end

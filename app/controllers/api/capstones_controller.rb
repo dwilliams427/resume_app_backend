@@ -15,7 +15,7 @@ class Api::CapstonesController < ApplicationController
       description: params[:description],
       url: params[:url],
       screenshot: params[:screenshot],
-      student_id: current_student.id,
+      student_id: current_user.id,
     )
 
     # happy/sad path
